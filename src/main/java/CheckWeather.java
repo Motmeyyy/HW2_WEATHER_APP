@@ -14,7 +14,7 @@ public class CheckWeather {
     // API-ключ для доступа к сервису Яндекс.Погода
     private final String apiKey = "a055ede3-ddd9-43c1-b9d3-08bf71504984";
     // URL для получения погоды с API (на каждый час)
-    private final String apiUrl = "https://api.weather.yandex.ru/v2/forecast?lat=55.75396&lon=37.620393&hours=true&limit=1&extra=false";
+    private final String apiUrl = "https://api.weather.yandex.ru/v2/forecast?lat=54.9848&lon=73.3674&hours=true&limit=1&extra=false";
 
 
     /**
@@ -51,7 +51,7 @@ public class CheckWeather {
 
         HttpClient client = HttpClients.createDefault();
         // URL для получения погоды с API (на три дня, параметр limit = 3)
-        String threeDayApiUrl = "https://api.weather.yandex.ru/v2/forecast?lat=55.75396&lon=37.620393&hours=true&limit=3&extra=false";
+        String threeDayApiUrl = "https://api.weather.yandex.ru/v2/forecast?lat=48.4647&lon=135.0715&lang=ru_RU&hours=true&limit=3&extra=false";
         HttpGet request = new HttpGet(threeDayApiUrl);
         request.addHeader("X-Yandex-API-Key", apiKey);
 
@@ -61,6 +61,7 @@ public class CheckWeather {
         JsonObject json = parser.parse(response).getAsJsonObject();
 
         // Извлечение массива с данными о погоде на три дня вперед
+
         JsonArray threeDayForecasts = json.getAsJsonArray("forecasts");
 
         return threeDayForecasts;
